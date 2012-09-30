@@ -3,8 +3,8 @@
 Download the Arduino IDE from [here](http://www.arduino.cc/) and then
 place the libraries from the links below into the following location:
 
-Mac OS X: **~/Documents/Arduino/libraries**
-WIndows XP/Vista/7: **%USERPROFILE%\My Documents\Arduino\libraries**
+    Mac OS X:  ~/Documents/Arduino/libraries
+    WIndows:   %USERPROFILE%\My Documents\Arduino\libraries
 
 ## Libraries
 
