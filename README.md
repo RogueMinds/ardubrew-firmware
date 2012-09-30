@@ -6,7 +6,7 @@
 * [One Wire](http://www.pjrc.com/teensy/td_libs_OneWire.html)
 * [Time](http://arduino.cc/playground/Code/Time)
 
-# Usage
+## Usage
 
 Download the Arduino IDE from [arduino.cc](http://arduino.cc/en/Main/Software) and place
 the required libraries into the following location:
