@@ -1,14 +1,13 @@
 # Arduino Temperature Controller
 
-[Arduino IDE](http://www.arduino.cc/)
+Download the Arduino IDE from [here](http://www.arduino.cc/) and then
+place the libraries from the links below into the following location:
+
+Mac OS X: **~/Documents/Arduino/libraries**
+WIndows XP/Vista/7: **%USERPROFILE%\My Documents\Arduino\libraries**
 
 ## Libraries
 
 * [Dallas Temperature](https://github.com/milesburton/Arduino-Temperature-Control-Library.git)
-* [One Wire](http://www.arduino.cc/playground/Learning/OneWire)
+* [One Wire](http://www.pjrc.com/teensy/td_libs_OneWire.html)
 * [Time](http://arduino.cc/playground/Code/Time)
-
-### Mac OS X
-
-These libraries should go into ~/Documents/Arduino/libraries in order
-for the Arduino IDE to read them properly.
