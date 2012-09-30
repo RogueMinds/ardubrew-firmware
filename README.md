@@ -4,9 +4,9 @@
 
 == Libraries ==
 
-[Dallas Temperature](https://github.com/milesburton/Arduino-Temperature-Control-Library.git)
-[One Wire](http://www.arduino.cc/playground/Learning/OneWire)
-[Time](http://arduino.cc/playground/Code/Time)
+* [Dallas Temperature](https://github.com/milesburton/Arduino-Temperature-Control-Library.git)
+* [One Wire](http://www.arduino.cc/playground/Learning/OneWire)
+* [Time](http://arduino.cc/playground/Code/Time)
 
 === Mac OS X ===
 
