@@ -13,3 +13,7 @@ the required libraries into the following location:
 
     Mac OS X:  ~/Documents/Arduino/libraries
     Windows:   %USERPROFILE%\My Documents\Arduino\libraries
+
+**Note:** The **Time** library archive may extract to a subdirectory called **Time**, which
+contains another subdirectory called **Time**. The subdirectory is the one that must be placed
+in the /path/to/libraries location.
