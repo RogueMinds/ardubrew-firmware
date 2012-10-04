@@ -122,7 +122,7 @@ rrdtool graph "$database.png" \
     GPRINT:probe1-avg:"Average\: %2.2lf°" \
     GPRINT:probe1-min:"Minimum\: %2.2lf°" \
     --title "Temperature Plot (DS18B20)" \
-    --vertical-label "Degrees Farenheit" \
+    --vertical-label "Degrees Fahrenheit" \
     --width 800 \
     --height 350 \
     --color "BACK#1f1c1e" \
