@@ -11,7 +11,7 @@
 
 #define TEMP_CMD       'S'   // Header tag for the temperature sync message
 #define TEMP_LEN        2    // Length of temperature payload
-#define TEMP_OFFSET     1.0  // Temperature offset
+#define TEMP_OFFSET     0.25 // Temperature offset
 #define TEMP_TARGET     64.0 // Temperature target
 
 int relay_status        = HIGH;
