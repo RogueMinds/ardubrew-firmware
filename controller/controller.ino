@@ -11,7 +11,7 @@
 
 #define TEMP_CMD       'S'   // Header tag for the temperature sync message
 #define TEMP_LEN        2    // Length of temperature payload
-#define TEMP_OFFSET     1.0  // Temperature offset
+#define TEMP_OFFSET     0.25 // Temperature offset
 #define TEMP_TARGET     64.0 // Temperature target
 
 int relay_status        = HIGH;
@@ -101,6 +101,7 @@ void readInputData() {
 void readTemperature() {
     sensors.requestTemperatures();
     temperature = (double)sensors.getTempFByIndex(0);
+    logData("temp", temperature);
 }
 
 /**
@@ -112,14 +113,14 @@ void checkTemperature() {
         if (relay_status != LOW) {
             relay_status = LOW;
             digitalWrite(PIN_RELAY, relay_status);
-            logData("switch", 1);
+            logData("relay", "on");
         }
     } else {
         if (temperature < targetTemp-TEMP_OFFSET) {
             if (relay_status != HIGH) {
                 relay_status = HIGH;
                 digitalWrite(PIN_RELAY, relay_status);
-                logData("switch", 0);
+                logData("relay", "off");
             }
         }
     }
@@ -130,7 +131,7 @@ void setup() {
     // setup temperature sensors
     sensors.begin();
     targetTemp = TEMP_TARGET;
-    // setup heater relay
+    // setup cooler relay
     pinMode(PIN_RELAY, OUTPUT);
     digitalWrite(PIN_RELAY, relay_status);
 }
