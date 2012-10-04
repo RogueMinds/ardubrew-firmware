@@ -8,7 +8,7 @@ Display the graph script's usage information.
 
     OPTIONS:
        -h      Show this message
-       -s      Source name without the extension
+       -d      Data set name (without the file extension)
        -b      Beginning date (defaults to the current timestamp)
        -e      Ending date (defaults to the beginning date + date range)
        -r      Date range (defaults to 84600 seconds)
