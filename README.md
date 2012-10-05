@@ -17,3 +17,5 @@ the required libraries into the following location:
 **Note:** The **Time** library archive may extract to a subdirectory called **Time**, which
 contains another subdirectory called **Time**. The subdirectory is the one that must be placed
 in the /path/to/libraries location.
+
+For more information, read the [Arduino Libraries](http://www.arduino.cc/en/Hacking/Libraries) article.
