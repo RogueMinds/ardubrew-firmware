@@ -87,40 +87,42 @@ if [ ! -r "$database.log" ]; then
     exit 1
 fi
 
-###############################
-# create databases and graphs #
-###############################
+################################
+# create and populate database #
+################################
 
-rrdtool create "$database.rrd" \
-    "DS:temperature:GAUGE:15:${lower}:${upper}" \
+rrdtool create "$database-temp.rrd" \
+    --start $timestart \
+    --step 15 \
+    "DS:temp:GAUGE:15:0:U" \
     RRA:MIN:0.5:12:2400 \
     RRA:MAX:0.5:12:2400 \
-    RRA:AVERAGE:0.5:12:2400 \
-    --start $timestart \
-    --step 15
+    RRA:AVERAGE:0.5:12:2400
+
+if [ ! -z $aggregate ]; then
+    timestart="$(($timestart + 1))"
+fi
 
 for line in $(cat "$database.log" | tr -d '\r'); do
     IFS=":"; declare -a data=($line)
+
+    if [ ! -z $aggregate ]; then
+        ctime="$((${data[1]} + $timestart))"
+    else
+        ctime="${data[1]}"
+    fi
+
     if [ "${data[0]}" == "temp" ]; then
-        if [ ! -z $aggregate ]; then
-            ctime="$((${data[1]} + $timestart))"
-        else
-            ctime="${data[1]}"
-        fi
         cvalue="${data[2]}"
-        rrdtool update "$database.rrd" "${ctime}:${cvalue}"
+        rrdtool update "$database-temp.rrd" "${ctime}:${cvalue}"
     fi
 done
 
+##################
+# generate graph #
+##################
+
 rrdtool graph "$database.png" \
-    "DEF:probe1=${database}.rrd:temperature:AVERAGE" \
-    AREA:probe1#fcbe2c:"Temperature" \
-    VDEF:probe1-max=probe1,MAXIMUM \
-    VDEF:probe1-avg=probe1,AVERAGE \
-    VDEF:probe1-min=probe1,MINIMUM \
-    GPRINT:probe1-max:"Maximum\: %2.2lf°" \
-    GPRINT:probe1-avg:"Average\: %2.2lf°" \
-    GPRINT:probe1-min:"Minimum\: %2.2lf°" \
     --title "Temperature Plot (DS18B20)" \
     --vertical-label "Degrees Fahrenheit" \
     --width 800 \
@@ -135,4 +137,19 @@ rrdtool graph "$database.png" \
     --upper-limit $upper \
     --lower-limit $lower \
     --start $timestart \
-    --end $timeend >/dev/null
+    --end $timeend \
+    --alt-y-grid \
+    --rigid \
+    --slope-mode \
+    --watermark "`date`" \
+    --legend-direction=topdown \
+    "DEF:st=${database}-temp.rrd:temp:AVERAGE" \
+    AREA:st#fcbe2c:"Temperature" \
+    VDEF:st-max=st,MAXIMUM \
+    VDEF:st-avg=st,AVERAGE \
+    VDEF:st-min=st,MINIMUM \
+    GPRINT:st-max:"Maximum\: %2.2lf°" \
+    GPRINT:st-avg:"Average\: %2.2lf°" \
+    GPRINT:st-min:"Minimum\: %2.2lf°" \
+    >/dev/null
+
