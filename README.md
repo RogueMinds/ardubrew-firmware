@@ -6,6 +6,9 @@
 * [One Wire](http://www.pjrc.com/teensy/td_libs_OneWire.html)
 * [Time](http://arduino.cc/playground/Code/Time)
 
+If you cannot see the USB serial port corresponding to the Arduino device, you may also need to
+install the [Virtual COM Port Drivers](http://www.ftdichip.com/Drivers/VCP.htm).
+
 ## Usage
 
 Download the Arduino IDE from [arduino.cc](http://arduino.cc/en/Main/Software) and place
